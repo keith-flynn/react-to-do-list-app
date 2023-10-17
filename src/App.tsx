@@ -23,7 +23,24 @@ function App() {
 
       setNewItem("")
     }
-     
+
+    function toggleTodo(id: string, completed: boolean) {
+      setTodos(currentTodos => {
+        return currentTodos.map(todo => {
+          if (todo.id === id) {
+            return { ...todo, completed }
+          }
+
+          return todo
+        })
+      })
+    }
+    
+    function deleteTodo(id: string) {
+      setTodos(currentTodos => {
+        return currentTodos.filter(todo => todo.id !== id)
+      })
+    }
 
   return (
     <>
@@ -37,15 +54,16 @@ function App() {
       </form>
       <h1 className="header">ToDo List</h1>
       <ul className="list">
+        {todos.length === 0 && "Nothing yet... Get Busy!"}
         {todos.map(todo => {
           return (
           
           <li key={todo.id}>
             <label>
-              <input type="checkbox" checked={todo.completed} />
+              <input type="checkbox" checked={todo.completed} onChange={e => toggleTodo(todo.id, e.target.checked)} />
               {todo.title}
             </label>
-            <button className="btn btn-danger">Delete</button>
+            <button onClick={() => deleteTodo(todo.id)} className="btn btn-danger">Delete</button>
           </li>
           )
         })}
