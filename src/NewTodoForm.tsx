@@ -1,6 +1,10 @@
 import { useState } from "react";
 
-function NewTodoForm({ onSubmit }) {
+type NewTodoFormProps = {
+  onSubmit: (newTodo: string) => void;
+};
+
+function NewTodoForm({ onSubmit }: NewTodoFormProps) {
   const [newItem, setNewItem] = useState("");
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
