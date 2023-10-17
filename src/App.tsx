@@ -1,7 +1,6 @@
 import { useState } from "react";
 import NewTodoForm from "./NewTodoForm";
 import TodoList from "./TodoList";
-import Todoitem from "./TodoItem";
 import "./styles.css";
 
 type TodoItem = {
@@ -44,7 +43,7 @@ function App() {
     <>
       <NewTodoForm onSubmit={addTodo} />
       <h1 className="header">ToDo List</h1>
-      <TodoList todos={todos} />
+      <TodoList todos={todos} toggleTodo={toggleTodo} deleteTodo={deleteTodo}/>
     </>
   );
 }
