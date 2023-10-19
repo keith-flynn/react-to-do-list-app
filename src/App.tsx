@@ -23,7 +23,7 @@ function App() {
   }, [todos])
 
   function addTodo(title: string) {
-    setTodos((currentTodos) => {
+    setTodos((currentTodos: TodoItem[]) => {
       return [
         ...currentTodos,
         { id: crypto.randomUUID(), title, completed: false },
@@ -32,8 +32,8 @@ function App() {
   }
 
   function toggleTodo(id: string, completed: boolean) {
-    setTodos((currentTodos) => {
-      return currentTodos.map((todo) => {
+    setTodos((currentTodos: TodoItem[]) => {
+      return currentTodos.map((todo: TodoItem) => {
         if (todo.id === id) {
           return { ...todo, completed };
         }
@@ -44,8 +44,8 @@ function App() {
   }
 
   function deleteTodo(id: string) {
-    setTodos((currentTodos) => {
-      return currentTodos.filter((todo) => todo.id !== id);
+    setTodos((currentTodos: TodoItem[]) => {
+      return currentTodos.filter((todo: TodoItem) => todo.id !== id);
     });
   }
 
